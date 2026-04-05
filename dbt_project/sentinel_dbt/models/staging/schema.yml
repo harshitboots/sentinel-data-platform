@@ -36,7 +36,7 @@ models:
         tests:
           - not_null
 
-      - name: event_timestamp
+      - name: event_time
         tests:
           - not_null
 
@@ -45,4 +45,4 @@ models:
          arguments:
            combination_of_columns:
              - user_id
-             - event_timestamp
+             - event_time
