@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: raw
-    database: sentinel-platform-492311   # project id
+  - name: sentinel_raw
+    database: sentinel-platform-492311
     schema: sentinel_raw
 
     tables:
@@ -10,3 +10,20 @@ sources:
       - name: raw_user_profile
       - name: raw_transactions
       - name: raw_events
+
+models:
+  - name: stg_users
+    description: "Staging users table"
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_transactions
+    description: "Transactions staging"
+    columns:
+      - name: transaction_id
+        tests:
+          - not_null
+          - unique
