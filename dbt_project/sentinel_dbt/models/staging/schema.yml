@@ -42,6 +42,7 @@ models:
 
     tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - user_id
-            - event_timestamp
+         arguments:
+           combination_of_columns:
+             - user_id
+             - event_timestamp
