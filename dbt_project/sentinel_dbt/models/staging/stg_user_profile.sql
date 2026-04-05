@@ -3,7 +3,7 @@
 WITH source AS (
 
     SELECT * 
-    FROM {{ source('sentinel_raw', 'raw_user_profile') }}
+    FROM {{ source('raw', 'raw_user_profile') }}
 
 ),
 
