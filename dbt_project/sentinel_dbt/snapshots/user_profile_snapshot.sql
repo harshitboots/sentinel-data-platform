@@ -15,6 +15,6 @@ SELECT
     city,
     updated_at
 
-FROM {{ source('sentinel_raw', 'raw_user_profile') }}
+FROM {{ source('raw', 'raw_user_profile') }}
 
 {% endsnapshot %}
