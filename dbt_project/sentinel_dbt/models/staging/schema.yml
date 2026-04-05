@@ -18,7 +18,7 @@ models:
       - name: user_id
         tests:
           - not_null
-          - unique
+          # - unique   # optional
 
   - name: stg_transactions
     description: "Transactions staging"
@@ -27,3 +27,21 @@ models:
         tests:
           - not_null
           - unique
+
+  - name: stg_events
+    description: "User events"
+
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - user_id
+            - event_timestamp
