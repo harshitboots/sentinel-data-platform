@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: sentinel_raw
+    database: sentinel-platform-492311   # project id
+    schema: sentinel_raw
+
+    tables:
+      - name: raw_users
+      - name: raw_user_profile
+      - name: raw_transactions
+      - name: raw_events
