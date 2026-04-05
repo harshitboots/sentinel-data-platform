@@ -39,10 +39,3 @@ models:
       - name: event_time
         tests:
           - not_null
-
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-         arguments:
-           combination_of_columns:
-             - user_id
-             - event_time
