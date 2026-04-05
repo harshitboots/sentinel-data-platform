@@ -2,40 +2,75 @@ version: 2
 
 sources:
   - name: raw
+    description: "Raw data ingested from source systems into BigQuery"
     database: sentinel-platform-492311
     schema: sentinel_raw
 
     tables:
       - name: raw_users
+        description: "Raw users data from upstream system"
+
       - name: raw_user_profile
+        description: "Raw user profile details including demographics"
+
       - name: raw_transactions
+        description: "Raw financial transactions data"
+
       - name: raw_events
+        description: "Raw user activity events"
 
 models:
   - name: stg_users
-    description: "Staging users table"
+    description: "Staging table for users with cleaned and standardized structure"
+
     columns:
       - name: user_id
+        description: "Unique identifier for each user"
         tests:
           - not_null
-          # - unique   # optional
+          # - unique   # enable if guaranteed unique
+
+      - name: created_at
+        description: "Timestamp when the user account was created"
+
+      - name: updated_at
+        description: "Timestamp of last update to user record"
 
   - name: stg_transactions
-    description: "Transactions staging"
+    description: "Staging table for transactions with cleaned financial data"
+
     columns:
       - name: transaction_id
+        description: "Unique identifier for each transaction"
         tests:
           - not_null
           - unique
 
+      - name: user_id
+        description: "User who performed the transaction"
+
+      - name: amount
+        description: "Transaction amount in GBP"
+
+      - name: transaction_timestamp
+        description: "Timestamp when the transaction occurred"
+
   - name: stg_events
-    description: "User events"
+    description: "Staging table capturing user activity events"
 
     columns:
       - name: user_id
+        description: "User performing the event"
         tests:
           - not_null
 
+      - name: event_type
+        description: "Type of event (click, login, purchase, etc.)"
+
       - name: event_time
+        description: "Timestamp when the event occurred"
         tests:
           - not_null
+
+      - name: event_source
+        description: "Source system or platform where event originated"
